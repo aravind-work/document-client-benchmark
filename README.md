@@ -35,7 +35,7 @@ java -cp /path/to/target/document-client-benchmark-assembly-0.0.11-SNAPSHOT.jar 
 
 # refer to results.xlsx spreadsheet results based on a F32 azure VM hitting a cosmosDB provisioned with 1.6M RUs (166 partitions)
 
- ```
+```
 
 
 SBT plugin -- <https://github.com/ktoso/sbt-jmh>
