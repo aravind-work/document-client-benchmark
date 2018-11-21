@@ -112,7 +112,7 @@ class BatchQueryBenchmark {
       executorService)
 
     if(startPartition < 0 || startPartition > idsPerPartition.size - 1){
-      throw new Exception(s"Invalid value for startPartition, must be between 0 and ${idsPerPartition.size - 1}")
+      throw new Exception(s"Invalid routing for startPartition, must be between 0 and ${idsPerPartition.size - 1}")
     }
 
     if(endPartition == -1){
@@ -120,7 +120,7 @@ class BatchQueryBenchmark {
       logger.info(s"Setting endPartition to be the last partition (${endPartition})")
     }
     else if(endPartition < -1 || endPartition > idsPerPartition.size - 1){
-      throw new Exception(s"Invalid value for endPartition, must be between ${startPartition} and ${idsPerPartition.size - 1}")
+      throw new Exception(s"Invalid routing for endPartition, must be between ${startPartition} and ${idsPerPartition.size - 1}")
     }
 
     logger.info("setupTrial finished.")
