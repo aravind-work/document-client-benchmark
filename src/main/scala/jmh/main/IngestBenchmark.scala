@@ -34,11 +34,13 @@ class IngestBenchmark {
   @Param(Array("10"))
   var executorThreads: Int = 10
 
+  /*
   @Param(Array("Gateway", "DirectHttps"))
   var connectionMode:String = config.cosmosSettings.connectionMode.name()
 
   @Param(Array("Eventual", "Strong"))
   var consistencyLevel:String = config.cosmosSettings.consistencyLevel.name()
+  */
 
   // Global Variables that will be overridden by setup
   var documentClient:DocumentClient = _
@@ -70,13 +72,13 @@ class IngestBenchmark {
 
     val connectionPolicy = ConnectionPolicy.GetDefault
     connectionPolicy.setMaxPoolSize(config.cosmosSettings.maxPoolSize)
-    connectionPolicy.setConnectionMode(CosmosSettings.getCosmosConnectionMode(connectionMode))
+    connectionPolicy.setConnectionMode(config.cosmosSettings.connectionMode)
 
     documentClient = new DocumentClient(
       config.cosmosSettings.api,
       config.cosmosSettings.masterKey,
       connectionPolicy,
-      CosmosSettings.getCosmosConsistencyLevel(consistencyLevel)
+      config.cosmosSettings.consistencyLevel
     )
 
     routingDocumentDbPartitionMetadata = PartitionMetadata(documentClient, routingCollectionUrl)
