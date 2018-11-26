@@ -17,9 +17,8 @@ import java.util.UUID
 import java.util.concurrent._
 
 import com.microsoft.azure.documentdb._
-import jmh.main.config.CosmosSettings
 import jmh.main.documentdb.PartitionMetadata
-import jmh.main.util.{BatchHelper, BatchQueryHelper, ParallelBatchHelper}
+import jmh.main.util.{BatchQueryHelper, ParallelBatchHelper}
 import org.openjdk.jmh.annotations._
 import org.slf4j.{Logger, LoggerFactory}
 
@@ -33,14 +32,6 @@ class IngestBenchmark {
 
   @Param(Array("10"))
   var executorThreads: Int = 10
-
-  /*
-  @Param(Array("Gateway", "DirectHttps"))
-  var connectionMode:String = config.cosmosSettings.connectionMode.name()
-
-  @Param(Array("Eventual", "Strong"))
-  var consistencyLevel:String = config.cosmosSettings.consistencyLevel.name()
-  */
 
   // Global Variables that will be overridden by setup
   var documentClient:DocumentClient = _
