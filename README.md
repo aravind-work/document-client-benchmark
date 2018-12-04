@@ -12,15 +12,23 @@ Update src/main/resources/application.conf
 ``` 
     
 ```
-sbt clean compile
+* Install SBT     (on the build/dev machine)
+* Install Java 8  (on the benchmark machine)
+* Install Glances (on the benchmark machine) (optional)
+```
+
+    
+```
+sbt clean 
+sbt compile
 sbt jmh:compile
 sbt jmh:assembly
 
 # copy jar to target environment
 
-java -cp /path/to/target/document-client-benchmark-assembly-0.0.11-SNAPSHOT.jar  org.openjdk.jmh.Main -i 5 -wi 3 -f 1 -t 1 -bm sample BatchQueryBenchmark.batchQueryBenchmark
+java -cp /path/to/target/document-client-benchmark-assembly-1.0.jar  org.openjdk.jmh.Main -i 5 -wi 3 -f 1 -t 1 -bm sample BatchQueryBenchmark.batchQueryBenchmark
 
-java -cp /path/to/target/document-client-benchmark-assembly-0.0.11-SNAPSHOT.jar  org.openjdk.jmh.Main -i 5 -wi 3 -f 1 -t 1 -bm sample  -p executorThreads=6 -p partitionBatchSize=6 -p endPartition=5 BatchQueryBenchmark.batchQueryBenchmark
+java -cp /path/to/target/document-client-benchmark-assembly-1.0.jar  org.openjdk.jmh.Main -i 5 -wi 3 -f 1 -t 1 -bm sample  -p executorThreads=6 -p partitionBatchSize=6 -p endPartition=5 BatchQueryBenchmark.batchQueryBenchmark
 
 #
 # i         -> iterations
@@ -31,7 +39,7 @@ java -cp /path/to/target/document-client-benchmark-assembly-0.0.11-SNAPSHOT.jar 
 # pattern   -> regex to pick benchmark classes/methods
 
 # for more details run on params
-java -cp /path/to/target/document-client-benchmark-assembly-0.0.11-SNAPSHOT.jar  org.openjdk.jmh.Main -h
+java -cp /path/to/target/document-client-benchmark-assembly-1.0.jar  org.openjdk.jmh.Main -h
 
 # refer to results.xlsx spreadsheet results based on a F32 azure VM hitting a cosmosDB provisioned with 1.6M RUs (166 partitions)
 

@@ -85,8 +85,7 @@ class BatchQueryBenchmark {
 
     val connectionPolicy = ConnectionPolicy.GetDefault
     connectionPolicy.setMaxPoolSize(config.cosmosSettings.maxPoolSize)
-    connectionPolicy.setConnectionMode(CosmosSettings.getCosmosConnectionMode(connectionMode)
-    )
+    connectionPolicy.setConnectionMode(CosmosSettings.getCosmosConnectionMode(connectionMode))
 
     documentClient = new DocumentClient(
       config.cosmosSettings.api,
@@ -135,7 +134,6 @@ class BatchQueryBenchmark {
     executorService.awaitTermination(2000, TimeUnit.MILLISECONDS)
     logger.info("TearDown complete!")
   }
-
 
   @Benchmark
   def batchQueryBenchmark(): List[Document] = {
